@@ -3,9 +3,7 @@
 class SessionsController < ApplicationController
     skip_before_action :require_login
   
-    def new
-      @user = User.new
-    end
+    def new; end
   
     def create
       @user = User.find_by_user_id user_session(:user_id)

@@ -13,11 +13,16 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal get(root_url), 200
   end
 
-  # test 'redirects to pictures if login success' do
-  # end
+  test 'redirects to pictures if login success' do
+    post '/sessions', params: { session: @valid_attrs }
+    follow_redirect!
+    assert_equal path, "/user/#{@valid_attrs[:user_id]}"
+  end
 
-  # test 'show message if login fails' do 
-  # end
+  test 'show message if login fails' do
+    post '/sessions', params: { session: @invalid_attrs }
+    assert_includes response.body, 'Invalid email/password combination'
+  end
 
   test 'can logout successfully' do
     delete '/sessions'
