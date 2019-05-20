@@ -1,0 +1,13 @@
+
+h2 Login Page
+
+= form_for(:session, url: sessions_path, method: 'post') do |f|
+
+  div.field
+    = f.label :email
+    = f.text_field :user_id, autofocus: true, required: true
+  div.field
+    = f.label :password
+    = f.password_field :password, required: true
+  div.actions
+    = f.submit 'Login'
