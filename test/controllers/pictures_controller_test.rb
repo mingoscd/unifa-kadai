@@ -18,12 +18,20 @@ class PicturesControllerTest < ActionDispatch::IntegrationTest
     assert_equal path, "/user/#{@user_attrs[:user_id]}"
   end
 
-  # test 'can access pictures upload page' do
-  # end
+  test 'can access pictures upload page' do
+    get(user_upload_url(@user_attrs[:user_id]))
+    assert_equal path, "/user/#{@user_attrs[:user_id]}/upload"
+  end
 
-  # test 'shows error and return to upload page' do
-  # end
+  test 'shows error and return to upload page' do
+    post user_upload_url(@user_attrs[:user_id]), params: { picture: @picture_attrs.merge(title: '') }
+    assert_equal path, "/user/#{@user_attrs[:user_id]}/upload"
+    assert_includes response.body, 'Title can&#39;t be blank'
+  end
 
-  # test 'uploads file' do
-  # end
+  test 'uploads file' do
+    file_count_before_upload = ActiveStorage::Attachment.count
+    post user_upload_url(@user_attrs[:user_id]), params: { picture: @picture_attrs }
+    assert ActiveStorage::Attachment.count, file_count_before_upload + 1
+  end
 end

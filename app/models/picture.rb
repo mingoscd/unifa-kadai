@@ -5,6 +5,6 @@ class Picture < ApplicationRecord
   belongs_to :user, foreign_key: :user_id
   validates :title, presence: true,
                     length: { maximum: 30 }
-  
-  # attached img source as active storage
+
+  has_one_attached :image, dependent: :destroy
 end

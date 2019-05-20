@@ -1,1 +1,5 @@
-Pictures list view
+- @pictures.each do |pic|
+    .title
+        = pic.title
+
+    = link_to image_tag(pic.image, height: 300)

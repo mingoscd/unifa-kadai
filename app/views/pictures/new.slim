@@ -1,0 +1,14 @@
+h2 Picture Upload
+
+= form_for(:picture, url: user_upload_path, method: 'post') do |f|
+
+    .field
+        = f.label :title
+        = f.text_field :title, required: true
+
+    .field
+        = f.label :image
+        = f.file_field :image, required: true, accept: "image/*"
+
+    .actions
+        = f.submit 'Upload'

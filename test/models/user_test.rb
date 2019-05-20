@@ -34,4 +34,3 @@ class UserTest < ActiveSupport::TestCase
     assert result, @existing_user
   end
 end
-

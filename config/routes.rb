@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   resource :sessions, only: %i[new create destroy]
   resources :user, only: [] do
     get '/', to: 'pictures#index'
+    get '/upload', to: 'pictures#new'
+    post '/upload', to: 'pictures#upload'
   end
 end

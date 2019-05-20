@@ -10,6 +10,12 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
+
+    - if active_session?(session)
+      .menu-link
+        = link_to pictures_or_upload_title, pictures_or_upload_path, method: 'get'
+      .menu-link
+        = link_to 'Log out', sessions_path, method: 'delete'
       
     .flash-error  
       - if flash[:danger]
