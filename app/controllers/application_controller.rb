@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :require_login
 
-    private
+  private
 
   def require_login
     redirect_to root_url unless current_user?
@@ -13,4 +13,4 @@ class ApplicationController < ActionController::Base
   def current_user?
     User.find_by_user_id(session[:user_id])
   end
-  end
+end

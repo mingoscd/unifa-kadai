@@ -1,5 +1,14 @@
 - @pictures.each do |pic|
-    .title
-        = pic.title
+    .picture
+        = form_with url: '/oauth/tweet' do |f|
+            .title
+                span
+                    = pic.title
+                = f.hidden_field :text, value: pic.title
+            div
+                = link_to image_tag(pic.image, height: 300)
+                = f.hidden_field :url, value: polymorphic_url(pic.image)
 
-    = link_to image_tag(pic.image, height: 300)
+            - if fake_tweeter_linked?
+                div
+                    = f.submit 'Tweet Picture', class: 'tweet'

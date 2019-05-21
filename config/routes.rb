@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     get '/upload', to: 'pictures#new'
     post '/upload', to: 'pictures#upload'
   end
+  get '/oauth/callback', to: 'oauth#callback'
+  post '/oauth/tweet', to: 'oauth#tweet'
 end
